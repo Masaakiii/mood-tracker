@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>気分トラッカー</title>
+    <style>
+        body {
+            font-family: "Arial", sans-serif;
+            text-align: center;
+            padding: 20px;
+            background-color: #f4f4f4;
+        }
+
+        h1 {
+            font-size: 6vw;
+            margin-bottom: 5vw;
+        }
+
+        p {
+            font-size: 4.5vw;
+            margin-bottom: 5vw;
+        }
+
+        .button-group {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 2vw;
+            margin-bottom: 5vw;
+        }
+
+        button {
+            font-size: 4.5vw;
+            padding: 3vw 6vw;
+            border: none;
+            border-radius: 8px;
+            background-color: #eee;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.1s ease;
+        }
+
+        button:hover {
+            background-color: #ccc;
+            color: white;
+        }
+
+        button:active {
+            transform: scale(0.96);
+        }
+
+        canvas {
+            transition: background-color 0.5s ease;
+            border: 2px solid #ccc;
+            border-radius: 10px;
+            margin-top: 30px;
+            width: 90vw;
+            height: auto;
+        }
+
+        .emoji-bounce {
+            animation: bounce 0.4s ease;
+        }
+
+        @keyframes bounce {
+            0% { transform: scale(1); }
+            25% { transform: scale(1.2); }
+            50% { transform: scale(0.95); }
+            75% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+
+        @media (min-width: 768px) {
+            h1 {
+                font-size: 2.5em;
+            }
+            p, button {
+                font-size: 1.2em;
+            }
+            button {
+                padding: 10px 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <h1>気分記録</h1>
+    <p>今日はどんな気分ですか？<br>
+        「嬉しい」「普通」「悲しい」を選んでください。<br>
+        ボタンを押すと現在の気分が記録され、キャンバスに表示されます。<br>
+        現在の気分：<span id="mood">🤔</span>
+    </p>
+    <div class="button-group">
+        <button id="happy">😊 嬉しい</button>
+        <button id="neutral">😐 普通</button>
+        <button id="sad">😢 悲しい</button>
+        <button id="reset">リセット</button>
+    </div>
+    <canvas id="moodCanvas" width="400" height="250"></canvas>
+
+    <script>
+        let mood = "🤔";
+        let moodColor = "black";
+        let backgroundColor = "white";
+
+        const moodDisplay = document.getElementById("mood");
+        const canvas = document.getElementById("moodCanvas");
+        const ctx = canvas.getContext("2d");
+
+        function updateCanvas() {
+            canvas.style.backgroundColor = backgroundColor;
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            ctx.font = `${canvas.width * 0.55}px Arial`;
+            ctx.fillStyle = moodColor;
+            ctx.textAlign = "center";
+            ctx.textBaseline = "middle";
+            ctx.fillText(mood, canvas.width / 2, canvas.height / 2);
+            canvas.classList.remove("emoji-bounce");
+            void canvas.offsetWidth;
+            canvas.classList.add("emoji-bounce");
+        }
+
+        function setMood(emoji, color, bg = "white") {
+            mood = emoji;
+            moodColor = color;
+            backgroundColor = bg;
+            moodDisplay.textContent = mood;
+            updateCanvas();
+        }
+
+        document.getElementById("happy").addEventListener("click", () => setMood("😊", "green", "#e6ffe6"));
+        document.getElementById("neutral").addEventListener("click", () => setMood("😐", "orange", "#fff8dc"));
+        document.getElementById("sad").addEventListener("click", () => setMood("😢", "red", "#e0f0ff"));
+        document.getElementById("reset").addEventListener("click", () => setMood("🤔", "black", "white"));
+
+        window.addEventListener("DOMContentLoaded", updateCanvas);
+        window.addEventListener("resize", updateCanvas);
+    </script>
+</body>
+</html>
