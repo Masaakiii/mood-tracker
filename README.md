@@ -35,5 +35,4 @@ https://masaakiii.github.io/mood-tracker/
 
 🧑‍💻 制作
 
-Masaakiii
-https://github.com/Masaakiii
+[Masaakiii](https://github.com/Masaakiii)
