@@ -47,7 +47,7 @@ canvas {
   border: 2px solid #ccc;
   border-radius: 10px;
   margin-top: 30px;
-  width: 60vw;
+  width: 40vw;
   height: auto;
 }
 
@@ -84,4 +84,30 @@ canvas {
   button {
     padding: 10px 20px;
   }
+}
+
+/* 以下為月曆排版 */
+#calendar {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr); /*一週七欄*/
+  gap: 10px; /*格子間間距*/
+  max-width: 320px;
+  margin: 0 auto; /*置中*/
+  padding: 20px 0;
+}
+
+.day {
+  width: 40px;
+  height: 40px;
+  background-color: #f0f0f0;
+  border-radius: 50%;
+  text-align: center;
+  line-height: 40px; /*垂直製中*/
+  font-weight: bold;
+  color: #333;
+}
+
+.blank {
+  width: 40px;
+  height: 40px;
 }
