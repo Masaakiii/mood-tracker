@@ -12,13 +12,6 @@ for (let i = 0; i < firstDay; i++) {
   calendar.appendChild(blank)
 }
 
-for (let i = 1; i <= totalDays; i++) {
-  const baybox = dicument.createElement("div")
-  daybox.textContent = i
-  daybox.classList.add("day")
-  calendar.appendChild(daybox)
-}
-
 // 以下為月曆功能
 const today = new Date()
 const year = today.getFullYear()
