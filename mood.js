@@ -1,6 +1,7 @@
 let mood = "🤔"
 let moodColor = "black"
 let backgroundColor = "white"
+let currentMood = ""
 
 const moodDisplay = document.getElementById("mood")
 const canvas = document.getElementById("moodCanvas")
@@ -21,6 +22,7 @@ function updateCanvas() {
 
 function setMood(emoji, color, bg = "white") {
   mood = emoji
+  currentMood = emoji
   moodColor = color
   backgroundColor = bg
   moodDisplay.textContent = mood
