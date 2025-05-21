@@ -111,3 +111,10 @@ canvas {
   width: 40px;
   height: 40px;
 }
+
+.day.active {
+  background-color: #74b9ff;
+  color: white;
+  font-weight: bold;
+  box-shadow: 0 0 5px #0984e3;
+}

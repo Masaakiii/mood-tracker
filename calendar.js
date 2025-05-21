@@ -21,6 +21,14 @@ for (let i = 1; i <= totalDays; i++) {
   daybox.classList.add("day")
 
   daybox.addEventListener("click", function () {
+    // 1. 移除其他格子的 active 樣式
+    const previous = document.querySelector(".day.active")
+    if (previous) {
+      previous.classList.remove("active")
+    }
+    // 2. 加上這一格的 active 樣式
+    daybox.classList.add("active")
+    // 3. 顯示 emoji
     if (currentMood !== "") {
       daybox.textContent = `${i} ${currentMood}`
     }
